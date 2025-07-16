@@ -1,12 +1,4 @@
-import firebase from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  onSnapshot,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
-const db = getFirestore();
+const db = firebase.firestore();
 const infoForm = document.getElementById("infoForm");
 const addAddressBtn = document.getElementById("addAddressBtn");
 const addressContainer = document.getElementById("addressContainer");
@@ -65,7 +57,7 @@ infoForm.addEventListener("submit", async (e) => {
       : [],
   };
   try {
-    await addDoc(collection(db, "users"), info);
+    await db.collection("users").add(info);
     infoForm.reset();
     addressContainer.innerHTML = `
       <h3>Address 1</h3>
@@ -84,7 +76,7 @@ infoForm.addEventListener("submit", async (e) => {
   }
 });
 
-onSnapshot(collection(db, "users"), (snapshot) => {
+db.collection("users").onSnapshot((snapshot) => {
   const infoList = document.getElementById("infoList");
   infoList.innerHTML = "";
   snapshot.forEach((doc) => {
