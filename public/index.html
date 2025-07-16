@@ -1,30 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Cool App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-  <h1>Write Your Name!</h1>
-  <form id="nameForm">
-    <input type="text" id="nameInput" placeholder="Your name">
-    <button type="submit">Save Name</button>
-  </form>
-  <ul id="nameList"></ul>
-
-  <!-- Firebase magic code (paste the code you copied earlier) -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
-  <script>
-    // Paste your Firebase config here (from Step 2)
-    const firebaseConfig = {
-      // Your config code goes here (e.g., apiKey, authDomain, etc.)
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-  <script src="scripts/script.js"></script>
+  <header>
+    <h1 class="animate__animated animate__pulse">My Cool App</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+  <main>
+    <section class="container">
+      <h2 class="animate__animated animate__pulse">User Information</h2>
+      <form id="infoForm">
+        <div class="form-group">
+          <label for="firstNameInput">First Name *</label>
+          <input type="text" id="firstNameInput" placeholder="First Name" required maxlength="50">
+        </div>
+        <div class="form-group">
+          <label for="lastNameInput">Last Name *</label>
+          <input type="text" id="lastNameInput" placeholder="Last Name" required maxlength="50">
+        </div>
+        <div class="form-group">
+          <label for="emailInput">Email *</label>
+          <input type="email" id="emailInput" placeholder="Email" required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+        </div>
+        <div class="form-group">
+          <label for="ageInput">Age *</label>
+          <input type="number" id="ageInput" placeholder="Age" required min="0" max="120">
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Phone *</label>
+          <input type="tel" id="phoneInput" placeholder="123-456-7890" required pattern="\d{3}-\d{3}-\d{4}">
+        </div>
+        <div class="form-group">
+          <label for="birthdayInput">Birthday</label>
+          <input type="date" id="birthdayInput" max="2025-07-16">
+        </div>
+        <div class="form-group">
+          <label for="newsletterInput">Subscribe to Newsletter</label>
+          <input type="checkbox" id="newsletterInput">
+        </div>
+        <div class="form-group">
+          <label for="ratingInput">Rating (1-5) *</label>
+          <select id="ratingInput" required>
+            <option value="" disabled selected>Select Rating</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label for="codeSampleInput">Code Sample</label>
+          <textarea id="codeSampleInput" placeholder="Paste code or text (optional)" maxlength="1000"></textarea>
+        </div>
+        <div class="form-group full-width">
+          <fieldset>
+            <legend>Gender *</legend>
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </fieldset>
+        </div>
+        <div class="form-group full-width" id="addressContainer">
+          <h3>Address 1</h3>
+          <label for="streetInput1">Street *</label>
+          <input type="text" id="streetInput1" placeholder="Street" required maxlength="100">
+          <label for="cityInput1">City *</label>
+          <input type="text" id="cityInput1" placeholder="City" required maxlength="50">
+          <label for="countryInput1">Country *</label>
+          <input type="text" id="countryInput1" placeholder="Country" required>
+          <label for="zipInput1">Zip *</label>
+          <input type="text" id="zipInput1" placeholder="Zip" required pattern="[0-9A-Z-]{3,10}">
+        </div>
+        <button type="button" id="addAddressBtn" class="secondary-btn">Add Another Address</button>
+        <div class="form-group full-width">
+          <label for="skillsInput">Skills (comma-separated, optional)</label>
+          <input type="text" id="skillsInput" placeholder="e.g., JavaScript, Python">
+        </div>
+        <button type="submit" class="primary-btn">Save Info</button>
+      </form>
+      <ul id="infoList"></ul>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 My Cool App</p>
+  </footer>
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/script.js"></script>
 </body>
 
 </html>
